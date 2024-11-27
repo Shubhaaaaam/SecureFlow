@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            justify-content: baseline;
+            align-items: center;
+            margin: auto 0px;
+        }
+
+        .transaction-container {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .transaction-header {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 3px solid #444;
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transaction-table th,
+        .transaction-table td {
+            padding: 10px 25px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 2px solid #000;
+        }
+
+        .transaction-table th {
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .transaction-table1 {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transaction-table1 th,
+        .transaction-table1 td {
+            padding: 20px 25px;
+            text-align: left;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .transaction-table1 th {
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .transaction-table1 tr:nth-child(even) {
+            background: #f7f7f7;
+        }
+
+        .transaction-table1 tr:hover {
+            background: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="transaction-container">
+        <div class="transaction-header">
+            User's Details
+        </div>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>User ID</th>
+                    <th>DOB</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Bank</th>
+                    <th>UPI</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{data[0]}}</td>
+                    <td>{{data[7]}}</td>
+                    <td>{{data[1]}}</td>
+                    <td>{{data[11]}}</td>
+                    <td>{{data[2]}}</td>
+                    <td>{{data[5]}}</td>
+                    <td>{{data[10]}}</td>
+                    <td>{{data[12]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="transaction-container">
+        <br>
+        <form action="/transaction" method="Post">
+            <input style="display: none;" type="text" name="user_id" id="user_id" value={{user_id}}></input>
+            Perform Transaction:
+            <button type="submit">Proceed</button>
+        </form>
+        <br>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Support</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0e7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .support-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #2b2d42;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #000000;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: #3a3d46;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="support-container">
+        <h1>Contact Support</h1>
+        <p>If you have any questions or need assistance, please reach out to us through the options below:</p>
+        <form action="#">
+            <input style="display: none;" type="text" name="user_id" value={{user_id}}></input>
+        </form>
+        <div class="button-container">
+            <button
+                onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=shubhamsaha400@gmail.com', '_blank')">Send
+                Us Mail</button>
+            <button onclick="window.open('https://facebook.com', '_blank')">Contact Us on Facebook</button>
+            <button onclick="window.open('https://twitter.com', '_blank')">Contact Us on Twitter</button>
+            <button onclick="window.open('https://instagram.com', '_blank')">Contact Us on Instagram</button>
+            <button onclick="window.open('https://linkedin.com', '_blank')">Contact Us on LinkedIn</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

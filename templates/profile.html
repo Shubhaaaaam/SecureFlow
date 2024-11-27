@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #3a3a3a;
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0 2px;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="user_id"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            background-color: #fcff54cb;
+            border: 1px solid #fbff00b4;
+            border-radius: 4px;
+            color: #000000;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="color: #000; text-align: center;">{{message}}</h2>
+    <div class="container">
+        <h3>Edit Information</h3>
+        <form action="/update" method="POST">
+
+            <input style="display: none;" type="text" name="user_id" value={{user_id}}></input>
+
+            <label for="name">Name:</label>
+            <input type="text" value="{{data[0]}}" disabled>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="text" value="{{ data[1] }}" disabled>
+
+            <label for="address">Address:</label>
+            <input type="text" style="background-color: #fff;" id="address" name="address" placeholder="{{data[9]}}">
+
+            <label for="userid">User ID:</label>
+            <input type="text" value="{{ data[7] }}" disabled>
+
+            <label for="password">Password:</label>
+            <input type="password" value="{{ data[8] }}" disabled>
+
+            <label for="password">Change Password:</label>
+            <input type="password" style="background-color: #fff;" id="password" name="password"
+                placeholder="New Password">
+
+            <label for="bank">Bank:</label>
+            <input type="text" value="{{ data[5] }}" disabled>
+
+            <label for="upi-id">UPI ID:</label>
+            <input type="text" style="background-color: #fff;" id="upi" name="upi" placeholder="{{data[10]}}">
+
+            <label for="pan">PAN:</label>
+            <input type="text" value="{{ data[4] }}" disabled>
+
+            <label for="aadhaar">Aadhaar:</label>
+            <input type="text" value="{{ data[3] }}" disabled>
+
+            <label for="gender">Gender:</label>
+            <input type="text" value="{{ data[2] }}" disabled>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+
+</html>
