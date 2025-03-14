@@ -42,21 +42,17 @@ Secure Flow is a **web-based platform** designed for **secure and efficient tran
 ## 🚀 Installation & Setup
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/secure-flow.git
-   cd secure-flow
+   git clone https://github.com//Shubhaaaaam/SecureFlow.git
+   cd SecureFlow
    ```
 
-2. **Install Dependencies**
+
+2. **Run the Application**
    ```bash
-   pip install -r requirements.txt
+   python SecureFlow.py
    ```
 
-3. **Run the Application**
-   ```bash
-   python app.py
-   ```
-
-4. **Access in Browser:** `http://localhost:5000`
+3. **Access in Browser:** `http://localhost:5000`
 
 ## 🛠 Contributing
 1. **Fork the repository**
