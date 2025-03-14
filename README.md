@@ -28,7 +28,7 @@ Secure Flow is a **web-based platform** designed for **secure and efficient tran
 - **SQL Database** – Secure data storage
 - **Telegram Alerts** – OTP verification for login attempts
 
-## 📸 Screenshots
+## 📸 Templetes
 - ✅ Dashboard
 - ✅ Transaction Page
 - ✅ User Profile Management
