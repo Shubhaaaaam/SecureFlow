@@ -60,11 +60,3 @@ Secure Flow is a **web-based platform** designed for **secure and efficient tran
 3. **Make changes and commit:** `git commit -m 'Added new feature'`
 4. **Push changes:** `git push origin feature-branch`
 5. **Create a Pull Request**
-
-## 📄 License
-This project is licensed under the **MIT License** – feel free to use and modify it!
-
-## 🤝 Acknowledgments
-- **Dr. Dattatreya P Mankame** (Mentor & Guide)
-- **Dayananda Sagar College of Engineering**
-- **All contributors & developers** 🎉
