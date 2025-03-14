@@ -1,4 +1,4 @@
-# Secure Flow - Mini Project
+# Secure Flow
 
 ## 🚀 Introduction
 Secure Flow is a **web-based platform** designed for **secure and efficient transaction management**. It integrates **Firebase & SQL databases**, providing **real-time processing, OTP-based authentication, and email integration** for enhanced security.
