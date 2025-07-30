@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Banking Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2a2f3d;
+            --secondary-color: #3b82f6;
+            --positive-color: #10b981;
+            --negative-color: #ef4444;
+            --background-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-items {
+            display: flex;
+            gap: clamp(1rem, 2vw, 2rem);
+            align-items: center;
+        }
+
+        .nav-item {
+            color: var(--primary-text-color, #64748b);
+            cursor: pointer;
+            transition: color 0.2s, background-color 0.2s;
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            outline: none;
+        }
+
+        .nav-item:hover {
+            color: var(--secondary-color, #2563eb);
+            background-color: rgba(100, 116, 139, 0.1);
+        }
+
+        .nav-item:active {
+            background-color: rgba(100, 116, 139, 0.2);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e2e8f0;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .balance {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--positive-color);
+            margin: 1rem 0;
+        }
+
+        /* Transaction History */
+        .transaction-list {
+            list-style: none;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .transaction-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .transaction-title {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .transaction-date {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .amount-positive {
+            color: var(--positive-color);
+            font-weight: 600;
+        }
+
+        .amount-negative {
+            color: var(--negative-color);
+            font-weight: 600;
+        }
+
+        /* Expense Categories */
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .category-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .category-badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-items {
+                display: none;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .balance {
+                font-size: 1.5rem;
+            }
+        }
+
+        .login-btn {
+            background: #007bff;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="http://127.0.0.1:5000/" style="text-decoration: none; color: #000000;">SecureFlow</a>
+        </div>
+        <form action="/utility" method="Post">
+            <input style="display: none;" type="text" name="user_id" value={{user_id}}></input>
+            <div class="nav-items">
+                <button class="nav-item" type="submit" name="button" value="profile">Profile</button>
+                <button class="nav-item" type="submit" name="button" value="transactions">Transactions</button>
+                <button class="nav-item" type="submit" name="button" value="support">Support</button>
+                <div class="profile">
+                    <i class="fas fa-bell"></i>
+                    <span>Welcome {{user_id}}</span>
+                    <div class="profile-img"><img src="{{ url_for('static', filename='user.png') }}"
+                            style="width:40px;height:40px;"></div>
+                </div>
+            </div>
+        </form>
+        <form action="/logout" method="POST" style="text-align:center;">
+            <input style="display: none;" type="text" name="user_id" value={{user_id}}></input>
+            <button class="login-btn" type="submit">LOGOUT</button>
+        </form>
+    </nav>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Current Balance</div>
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="balance">Rs. {{totalbalance}}</div>
+                <div class="transaction-date">Updated 2 min ago</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Verification Status</div>
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="balance">Approved</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Pending Payments</div>
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="balance">$00.00</div>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 2fr 1fr">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Transaction History</div>
+                    <i class="fas fa-history"></i>
+                </div>
+                <ul class="transaction-list">
+                    <li class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-title">Shopping Mall</div>
+                            <div class="transaction-date">Oct 24, 2023</div>
+                        </div>
+                        <div class="amount-negative">-$342.00</div>
+                    </li>
+                    <li class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-title">Salary Deposit</div>
+                            <div class="transaction-date">Oct 23, 2023</div>
+                        </div>
+                        <div class="amount-positive">+$4,500.00</div>
+                    </li>
+                    <li class="transaction-item">
+                        <div class="transaction-info">
+                            <div class="transaction-title">Restaurant</div>
+                            <div class="transaction-date">Oct 22, 2023</div>
+                        </div>
+                        <div class="amount-negative">-$85.00</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Expense Categories</div>
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <ul class="category-list">
+                    <li class="category-item">
+                        <div class="category-name">
+                            <div class="category-badge"></div>
+                            Bills
+                        </div>
+                        <div>$1,234</div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-name">
+                            <div class="category-badge" style="background: #10b981"></div>
+                            Shopping
+                        </div>
+                        <div>$892</div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-name">
+                            <div class="category-badge" style="background: #3b82f6"></div>
+                            Transport
+                        </div>
+                        <div>$456</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

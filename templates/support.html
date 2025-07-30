@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support | SecureFlow</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #e0e7ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            width: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo a {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: clamp(1rem, 2vw, 2rem);
+            align-items: center;
+        }
+
+        .nav-item {
+            color: var(--primary-text-color, #64748b);
+            cursor: pointer;
+            transition: color 0.2s, background-color 0.2s;
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            outline: none;
+        }
+
+        .nav-item:hover {
+            color: var(--secondary-color, #2563eb);
+            background-color: rgba(100, 116, 139, 0.1);
+        }
+
+        .nav-item:active {
+            background-color: rgba(100, 116, 139, 0.2);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile i {
+            font-size: 18px;
+            color: #2563eb;
+        }
+
+        .profile span {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .profile-img img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .login-btn {
+            background: #007bff;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* Support Container */
+        .support-container {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            width: 90%;
+            margin-top: 120px;
+            border: 1px solid #e2e8f0;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(29, 78, 216, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(29, 78, 216, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="http://127.0.0.1:5000/">SecureFlow</a></div>
+        <form action="/utility" method="POST">
+            <input style="display: none;" type="text" name="user_id" value="{{user_id}}">
+            <div class="nav-items">
+                <button class="nav-item" type="submit" name="button" value="dashboard">Dashboard</button>
+                <button class="nav-item" type="submit" name="button" value="profile">Profile</button>
+                <button class="nav-item" type="submit" name="button" value="transactions">Transactions</button>
+                <button class="nav-item" type="submit" name="button" value="chat">Chat With Us</button>
+                <div class="profile">
+                    <i class="fas fa-bell"></i>
+                    <span>Welcome {{user_id}}</span>
+                    <div class="profile-img"><img src="{{ url_for('static', filename='user.png') }}"></div>
+                </div>
+            </div>
+        </form>
+        <form action="/logout" method="POST">
+            <input style="display: none;" type="text" name="user_id" value="{{user_id}}">
+            <button class="login-btn" type="submit">LOGOUT</button>
+        </form>
+    </nav>
+
+    <!-- Support Container -->
+    <div class="support-container">
+        <h1>Need Help?</h1>
+        <p>We're here to assist you! Reach out through any of the platforms below:</p>
+
+        <div class="button-container">
+            <button
+                onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=shubhamsaha400@gmail.com', '_blank')">
+                📧 Send Us an Email
+            </button>
+            <button onclick="window.open('https://facebook.com', '_blank')">
+                📘 Connect on Facebook
+            </button>
+            <button onclick="window.open('https://twitter.com', '_blank')">
+                🐦 Message on Twitter
+            </button>
+            <button onclick="window.open('https://instagram.com', '_blank')">
+                📸 Follow on Instagram
+            </button>
+            <button onclick="window.open('https://linkedin.com', '_blank')">
+                🔗 Connect on LinkedIn
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>

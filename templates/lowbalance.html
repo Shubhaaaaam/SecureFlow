@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transaction Failed</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      border: 2px solid #dc3545;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .container h1 {
+      color: #dc3545;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .container p {
+      color: #6c757d;
+      font-size: 1.1em;
+    }
+
+    .icon {
+      font-size: 60px;
+      color: #dc3545;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="icon">❌</div>
+    <h1>Transaction Stopped</h1>
+    <p>You entered an amount greater than your current balance.</p>
+    <button class="btn" onclick="window.history.back()">Go Back</button>
+  </div>
+
+</body>
+</html>

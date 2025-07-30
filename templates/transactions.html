@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Transactions</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0e7ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            width: 100%;
+            background: #1e293b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #cbd5e1;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+
+        .nav-item:hover {
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        .profile-img img {
+            border-radius: 50%;
+        }
+
+        .logout-btn {
+            padding: 10px 15px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* Main Content */
+        .container {
+            width: 90%;
+            height: 700px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: rgba(0, 18, 51, 0.9);
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+            background-color: rgba(0, 18, 51, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #00b318;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+
+            .nav-items {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                padding-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="http://127.0.0.1:5000/">SecureFlow</a>
+        </div>
+        <form action="/utility" method="Post">
+            <input type="hidden" name="user_id" value="{{user_id}}">
+            <div class="nav-items">
+                <button class="nav-item" type="submit" name="button" value="dashboard">Dashboard</button>
+                <button class="nav-item" type="submit" name="button" value="profile">Profile</button>
+                <button class="nav-item" type="submit" name="button" value="support">Support</button>
+                <div class="profile">
+                    <i class="fas fa-bell"></i>
+                    <span>Welcome {{user_id}}</span>
+                    <div class="profile-img">
+                        <img src="{{ url_for('static', filename='user.png') }}" style="width:40px;height:40px;">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="/logout" method="POST">
+            <input type="hidden" name="user_id" value="{{user_id}}">
+            <button class="logout-btn" type="submit">LOGOUT</button>
+        </form>
+    </nav>
+
+    <!-- User Transactions -->
+    <div class="container">
+        <h2>User's Details</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>User ID</th>
+                        <th>DOB</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Bank</th>
+                        <th>UPI</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{data[0]}}</td>
+                        <td>{{data[7]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[11]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td>{{data[5]}}</td>
+                        <td>{{data[10]}}</td>
+                        <td>{{data[12]}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="button-container">
+            <form action="/transaction" method="POST">
+                <input type="hidden" name="user_id" value="{{user_id}}">
+                <br>
+                <button type="submit" style="font-size: large;">Proceed with Transaction</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
